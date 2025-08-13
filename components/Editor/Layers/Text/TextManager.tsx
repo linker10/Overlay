@@ -105,6 +105,17 @@ const TextManager = () => {
         }
     }
 
+    const handleLineHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const parsed = parseInt(e.target.value, 10);
+        if (Number.isNaN(parsed)) return;
+        if (selectedTextLayerId) {
+            // Immediate update for responsive UI
+            updateTextLayerImmediate(selectedTextLayerId, { lineHeight: parsed });
+            // Also update with history
+            updateTextLayer(selectedTextLayerId, { lineHeight: parsed });
+        }
+    }
+
     if (!fonts) return <p>Loading fonts...</p>;
 
     return (
@@ -173,7 +184,7 @@ const TextManager = () => {
                         </div>
                         
                         <div className='flex flex-col gap-2'>
-                            <Label>Opacity: {Math.round((selectedTextLayer?.opacity || 1) * 100)}%</Label>
+                            <Label>Opacity: {Math.round((selectedTextLayer?.opacity || 1) * 100)}</Label>
                             <Slider
                                 value={[Math.round((selectedTextLayer?.opacity || 1) * 100)]}
                                 onValueChange={handleOpacityChange}
@@ -184,6 +195,19 @@ const TextManager = () => {
                             />
                         </div>
                         
+                <div className='flex flex-col gap-2'>
+                    <Label>Line Height</Label>
+                    <Input
+                        type="number"
+                        inputMode="numeric"
+                        step={1}
+                        min={1}
+                        value={selectedTextLayer?.lineHeight ?? 1}
+                        onChange={handleLineHeightChange}
+                        className="w-full"
+                    />
+                </div>
+                
                         <div className='flex flex-col gap-2'>
                             <Label>Text Alignment</Label>
                             <div className="flex gap-1">

@@ -109,7 +109,8 @@ const Editor = () => {
             scaleY: 1,
             rotation: 0,
             skewX: 0,
-            skewY: 0
+            skewY: 0,
+            lineHeight: 1
         }
 
         addTextLayer(newText)

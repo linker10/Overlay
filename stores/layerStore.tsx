@@ -2,7 +2,6 @@ import { HistoryManager } from "@/utils/historyManager";
 import { create } from "zustand";
 import { devtools } from 'zustand/middleware'
 import { TextElement } from "@/types/index.type";
-import { createLayerUpdateDebouncer } from "@/utils/debounce";
 
 interface LayerStore {
     textLayers: TextElement[];
@@ -46,9 +45,6 @@ const autoSave = (textLayers: TextElement[], selectedTextLayerId: string | null)
         }
     }, 0);
 };
-
-// Create a debouncer for layer updates
-const layerUpdateDebouncer = createLayerUpdateDebouncer();
 
 const useLayerStore = create<LayerStore>()(devtools((set, get) => ({
     textLayers: [],

@@ -126,6 +126,7 @@ const TextLayer = ({ textLayer, isSelected, onSelect }: TextLayerProps) => {
                 skewX={textLayer.skewX}
                 skewY={textLayer.skewY}
                 ref={textRef}
+                lineHeight={textLayer.lineHeight}
             />
             {isSelected && (
                 <Transformer
@@ -171,6 +172,7 @@ export default memo(TextLayer, (prevProps, nextProps) => {
         prev.scaleY === next.scaleY &&
         prev.rotation === next.rotation &&
         prev.skewX === next.skewX &&
-        prev.skewY === next.skewY
+        prev.skewY === next.skewY &&
+        prev.lineHeight === next.lineHeight
     );
 })

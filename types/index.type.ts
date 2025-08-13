@@ -20,6 +20,7 @@ export interface TextElement {
   rotation: number;
   skewX: number;
   skewY: number;
+  lineHeight: number;
 }
 
 /**
